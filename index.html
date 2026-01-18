@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professional Resume | Your Name</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =============================
+       THEME VARIABLES (Light)
+    ============================== */
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1c1f26;
+      --muted: #6c757d;
+      --primary: #0d47a1;
+      --accent: #ffc107;
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* =============================
+       THEME VARIABLES (Dark)
+    ============================== */
+    body.dark-mode {
+      --bg: #0f141c;
+      --card: #151c27;
+      --text: #e8eef7;
+      --muted: #adb5bd;
+      --primary: #4dabf7;
+      --accent: #ffd43b;
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Global */
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      color: var(--text) !important;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link {
+      color: var(--muted) !important;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--primary) !important;
+    }
+
+    /* Main card */
+    .resume-wrapper {
+      margin-top: 28px;
+      margin-bottom: 28px;
+    }
+
+    .resume-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      transition: 0.3s;
+    }
+
+    /* Header profile */
+    .profile-pic {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .name {
+      font-weight: 800;
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0.4px;
+    }
+
+    .role {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .mini-info {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    /* Section title */
+    .section-title {
+      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary), transparent);
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+
+    /* Section boxes */
+    .box {
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: 14px;
+      padding: 16px;
+      transition: 0.25s;
+    }
+
+    body.dark-mode .box {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Buttons */
+    .btn-primary-custom {
+      background: var(--primary);
+      border: none;
+      color: white;
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 10px 14px;
+      transition: 0.2s;
+    }
+
+    .btn-primary-custom:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline-custom {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 10px 14px;
+      transition: 0.2s;
+    }
+
+    .btn-outline-custom:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Skill progress */
+    .skill-row {
+      margin-bottom: 12px;
+    }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .progress {
+      height: 10px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    body.dark-mode .progress {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    /* Contact links */
+    .contact a {
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 15px 0 25px;
+    }
+
+    /* Print (PDF) adjustments */
+    @media print {
+      nav, .no-print {
+        display: none !important;
+      }
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      .resume-card {
+        box-shadow: none !important;
+        border: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Resume</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ✅ MAIN CONTENT -->
+  <div class="container resume-wrapper">
+    <div class="resume-card">
+
+      <!-- TOP ACTION BUTTONS -->
+      <div class="d-flex flex-wrap gap-2 justify-content-end no-print">
+        <button class="btn-outline-custom" id="themeBtn">🌙 Dark Mode</button>
+        <button class="btn-primary-custom" onclick="downloadPDF()">⬇ Download Resume (PDF)</button>
+      </div>
+
+      <!-- HEADER -->
+      <div class="row align-items-center mt-3 g-4">
+        <div class="col-md-4 text-center">
+          <img src="https://via.placeholder.com/130" alt="Profile" class="profile-pic">
+        </div>
+        <div class="col-md-8">
+          <h1 class="name">Your Name</h1>
+          <p class="role">Mechanical Engineering Student | Fresher</p>
+
+          <p class="mini-info">
+            📍 Murud Janjira, Raigad &nbsp; | &nbsp;
+            📞 +91 XXXXX XXXXX &nbsp; | &nbsp;
+            ✉️ example@gmail.com
+          </p>
+
+          <div class="box mt-3" id="about">
+            <div class="section-title">
+              About Me <span class="title-line"></span>
+            </div>
+            <p class="mb-0">
+              Motivated Mechanical Engineering student with hands-on workshop knowledge and strong interest in
+              mechanical maintenance, automotive systems, and design. Looking for an opportunity to apply practical
+              skills and grow in an industry environment.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 COLUMN LAYOUT -->
+      <div class="row mt-4 g-4">
+
+        <!-- LEFT -->
+        <div class="col-lg-5">
+
+          <!-- EDUCATION -->
+          <div class="box" id="education">
+            <div class="section-title">
+              Education <span class="title-line"></span>
+            </div>
+            <ul class="mb-0">
+              <li><b>B.E Mechanical Engineering</b> (Pursuing)</li>
+              <li><b>Diploma in Mechanical Engineering</b> (Completed)</li>
+              <li><b>SSC / HSC</b> (Optional)</li>
+            </ul>
+          </div>
+
+          <!-- SKILLS WITH PROGRESS -->
+          <div class="box mt-4" id="skills">
+            <div class="section-title">
+              Skills <span class="title-line"></span>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-label"><span>AutoCAD</span><span>85%</span></div>
+              <div class="progress">
+                <div class="progress-bar" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-label"><span>SolidWorks</span><span>70%</span></div>
+              <div class="progress">
+                <div class="progress-bar" style="width: 70%"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-label"><span>Lathe / Milling</span><span>80%</span></div>
+              <div class="progress">
+                <div class="progress-bar" style="width: 80%"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-label"><span>Maintenance Basics</span><span>75%</span></div>
+              <div class="progress">
+                <div class="progress-bar" style="width: 75%"></div>
+              </div>
+            </div>
+
+            <div class="skill-row mb-0">
+              <div class="skill-label"><span>Teamwork & Communication</span><span>90%</span></div>
+              <div class="progress">
+                <div class="progress-bar" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTACT -->
+          <div class="box mt-4 contact" id="contact">
+            <div class="section-title">
+              Contact <span class="title-line"></span>
+            </div>
+
+            <p class="mb-1"><b>Email:</b> <a href="mailto:example@gmail.com">example@gmail.com</a></p>
+            <p class="mb-1"><b>Phone:</b> <a href="tel:+91xxxxxxxxxx">+91 XXXXX XXXXX</a></p>
+            <p class="mb-0"><b>LinkedIn:</b> <a href="#">linkedin.com/in/yourname</a></p>
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-lg-7">
+
+          <!-- PROJECTS -->
+          <div class="box" id="projects">
+            <div class="section-title">
+              Projects <span class="title-line"></span>
+            </div>
+
+            <div class="mb-3">
+              <h6 class="fw-bold mb-1">Cold Storage + Refrigeration Support System</h6>
+              <p class="mb-0 text-secondary">
+                Designed a concept to optimize refrigeration performance and reduce power consumption using
+                efficient components and layout planning.
+              </p>
+            </div>
+
+            <div class="mb-0">
+              <h6 class="fw-bold mb-1">Workshop Practice & Machine Operations</h6>
+              <p class="mb-0 text-secondary">
+                Performed operations like fitting, drilling, grinding, lathe turning, and basic maintenance checks
+                as part of hands-on training.
+              </p>
+            </div>
+          </div>
+
+          <!-- EXPERIENCE -->
+          <div class="box mt-4" id="experience">
+            <div class="section-title">
+              Experience <span class="title-line"></span>
+            </div>
+
+            <h6 class="fw-bold mb-1">Fresher / Internship (If Any)</h6>
+            <p class="mb-2 text-secondary">
+              Assisted in mechanical maintenance tasks, tool handling, machine checks, and safety procedures.
+            </p>
+
+            <ul class="mb-0">
+              <li>Basic preventive maintenance and inspection</li>
+              <li>Reading simple drawings and measurements</li>
+              <li>Workshop tools handling & safety</li>
+            </ul>
+          </div>
+
+          <!-- ACHIEVEMENTS -->
+          <div class="box mt-4">
+            <div class="section-title">
+              Strengths <span class="title-line"></span>
+            </div>
+            <ul class="mb-0">
+              <li>Quick learner with strong interest in mechanical systems</li>
+              <li>Responsible and hardworking</li>
+              <li>Strong practical knowledge from workshop training</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Your Name • Professional Resume Website
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // =============================
+    // Dark / Light Mode Toggle
+    // =============================
+    const themeBtn = document.getElementById("themeBtn");
+
+    function setTheme(mode) {
+      if (mode === "dark") {
+        document.body.classList.add("dark-mode");
+        themeBtn.innerText = "☀ Light Mode";
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.body.classList.remove("dark-mode");
+        themeBtn.innerText = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
+      }
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+
+    // Toggle theme on click
+    themeBtn.addEventListener("click", () => {
+      const isDark = document.body.classList.contains("dark-mode");
+      setTheme(isDark ? "light" : "dark");
+    });
+
+    // =============================
+    // Download Resume as PDF
+    // (Using Print -> Save as PDF)
+    // =============================
+    function downloadPDF() {
+      window.print();
+    }
+  </script>
+
+</body>
+</html>
